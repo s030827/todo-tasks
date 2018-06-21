@@ -1,6 +1,7 @@
 <table class="table table-striped">
   <thead>
     <tr>
+      <th>Done</th>
       <th>Category</th>
       <th>Name</th>
       <th>Details</th>
@@ -13,6 +14,7 @@
   <tbody>
     <% @tasks.each do |task| %>
       <tr>
+        <td><%= task.done? ? '✓' : '-' %></td>
         <td><%= task.category.name %></td>
         <td><%= task.name %></td>
         <td><%= task.details %></td>
