@@ -1,24 +1,14 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
+This is a simple application to manage tasks to do and done make by Ruby on Rails.
 application up and running.
 
-Things you may want to cover:
+Things that this application do:
 
-* Ruby version
+* Crud of Tasks.
+* Sort tasks to do than done.
+* Export data to csv file.
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
+![Screenshot](Screenshot.png)
 
 * ...
