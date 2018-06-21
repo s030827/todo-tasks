@@ -2,8 +2,16 @@ class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
 
   def index
-    @finished_tasks = Task.done
-    @pending_tasks  = Task.pending
+    respond_to do |format|
+      format.html do
+        @finished_tasks = Task.done
+        @pending_tasks  = Task.pending
+      end
+
+      format.csv do
+        send_data Task.to_csv
+      end
+    end
   end
 
   def new

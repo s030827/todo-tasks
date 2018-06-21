@@ -4,4 +4,24 @@ class Task < ApplicationRecord
 
   scope :done, -> { where(done: true) }
   scope :pending, -> { where(done: false) }
+
+  def self.to_csv
+    csv = []
+
+    csv << ['Category', 'Name', 'Details', 'Due_date', 'Done?'].join(',')
+
+    Task.all.each do |task|
+      row = [
+        task.category.name,
+        task.name,
+        task.details,
+        I18n.l(task.due_date, format: :short),
+        task.done? ? 'Sim' : 'Não'
+      ]
+
+      csv << row.join(',')
+    end
+
+    csv.join("\n")
+  end
 end
