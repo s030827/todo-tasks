@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 root 'tasks#index'
 
-resource :categories
-resource :tasks, except: :show
+resources :categories
+resources :tasks, except: :show
 end

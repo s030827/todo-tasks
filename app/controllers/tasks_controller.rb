@@ -2,7 +2,8 @@ class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
 
   def index
-    @tasks = Task.all
+    @finished_tasks = Task.done
+    @pending_tasks  = Task.pending
   end
 
   def new
@@ -27,7 +28,7 @@ class TasksController < ApplicationController
   def update
     
     if @task.update(task_params)
-      redirect_to @task, notive: 'Task Updated!'
+      redirect_to root_path, notive: 'Task Updated!'
     else
       flash.now[:error] = @task.errors.full_messages.to_sentence
       render :edit
@@ -37,13 +38,13 @@ class TasksController < ApplicationController
 
   def destroy
     @task.destroy
-    redirect_to tasks_path, notice: 'Task was deleted!'
+    redirect_to root_path, notice: 'Task was deleted!'
   end
 
   private
 
   def set_task
-    @task = Task.find(params[:id])
+      @task = Task.find(params[:id])
   end
 
   def task_params

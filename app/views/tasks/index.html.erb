@@ -1,27 +1,38 @@
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th>Done</th>
-      <th>Category</th>
-      <th>Name</th>
-      <th>Details</th>
-      <th>Deadline</th>
-      <th>Created on</th>
-      <th>Updated on</th>
-    </tr>
-  </thead>
+<% {'Pending' => @pending_tasks, 'Finished' => @finished_tasks}.each do |name, task| %>
 
-  <tbody>
-    <% @tasks.each do |task| %>
+  <h3><%= name %></h3>
+  <table class='table table-striped'>
+    <thead>
       <tr>
-        <td><%= task.done? ? '✓' : '-' %></td>
-        <td><%= task.category.name %></td>
-        <td><%= task.name %></td>
-        <td><%= task.details %></td>
-        <td><%= task.due_date %></td>
-        <td><%= l task.created_at, format: :short %></td>
-        <td><%= l task.updated_at, format: :short %></td>
+        <th>Done</th>
+        <th>Category</th>
+        <th>Name</th>
+        <th>Details</th>
+        <th>Deadline</th>
+        <th>Created on</th>
+        <th>Updated on</th>
+        <th>&nbsp;</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+
+    <tbody>
+      <% task.each do |task| %>
+        <tr>
+          <td><%= task.done? ? '✓' : '-' %></td>
+          <td><%= task.category.name %></td>
+          <td><%= task.name %></td>
+          <td><%= task.details %></td>
+          <td><%= task.due_date %></td>
+          <td><%= l task.created_at, format: :short %></td>
+          <td><%= l task.updated_at, format: :short %></td>
+
+          <td>
+            <%= link_to 'Edit', edit_task_path(task), class: 'btn btn-success' %>
+            <%= link_to 'Delete', task_path(task), method: :delete, class: 'btn btn-danger',
+            data: {confirm: 'Are you Sure?'} %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
