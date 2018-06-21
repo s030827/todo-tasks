@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-root 'task#index'
+root 'tasks#index'
 
 resource :categories
 resource :tasks

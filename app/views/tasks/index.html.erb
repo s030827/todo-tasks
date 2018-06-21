@@ -1,0 +1,25 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Category</th>
+      <th>Name</th>
+      <th>Details</th>
+      <th>Deadline</th>
+      <th>Created on</th>
+      <th>Updated on</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @tasks.each do |task| %>
+      <tr>
+        <td><%= task.category.name %></td>
+        <td><%= task.name %></td>
+        <td><%= task.details %></td>
+        <td><%= task.due_date %></td>
+        <td><%= l task.created_at, format: :short %></td>
+        <td><%= l task.updated_at, format: :short %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
